@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { CityService } from './services/city.service';

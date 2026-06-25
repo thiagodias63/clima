@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "packageManager": "npm",
+  "reporters": ["html", "clear-text", "progress"],
+  "testRunner": "vitest",
+  "checkers": ["typescript"],
+  "tsconfigFile": "tsconfig.spec.json",
+  "vitest": {
+    "configFile": "vite.config.ts"
+  },
+  "mutate": [
+    "src/app/services/city.service.ts",
+    "src/app/app.component.ts"
+  ],
+  "ignorePatterns": [
+    "dist/**",
+    ".angular/**",
+    ".stryker-tmp/**",
+    "coverage/**",
+    "reports/**"
+  ]
+}

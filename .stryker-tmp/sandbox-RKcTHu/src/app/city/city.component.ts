@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Component, input } from '@angular/core';
 import { NbCard, NbCardTitle, NbCardHeader, NbCardContent, NbTitle } from '@ng-brutalism/ui';
 

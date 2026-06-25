@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { faker } from '@faker-js/faker';
 import { CityComponent } from './city/city.component';
+import { CityService } from './services/city.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +11,15 @@ import { CityComponent } from './city/city.component';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  city = faker.location.city();
-  tempeture = faker.number.bigInt({ min: -10n, max: 50n });
+  private cityService = inject(CityService);
+
+  citiesResource = this.cityService.fetchCities();
+
+  toBigInt(val: string): bigint {
+    try {
+      return BigInt(val);
+    } catch {
+      return 0n;
+    }
+  }
 }
