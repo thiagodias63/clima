@@ -3,20 +3,16 @@
   "packageManager": "npm",
   "reporters": ["html", "clear-text", "progress"],
   "testRunner": "vitest",
-  "checkers": ["typescript"],
   "tsconfigFile": "tsconfig.spec.json",
+  "disableTypeChecks": true,
+  "ignoreStatic": true,
   "vitest": {
     "configFile": "vite.config.ts"
   },
   "mutate": [
     "src/app/services/city.service.ts",
-    "src/app/app.component.ts"
+    "src/app/app.component.ts",
+    "src/app/city/city.component.ts"
   ],
-  "ignorePatterns": [
-    "dist/**",
-    ".angular/**",
-    ".stryker-tmp/**",
-    "coverage/**",
-    "reports/**"
-  ]
+  "ignorePatterns": ["dist/**", ".angular/**", ".stryker-tmp/**", "coverage/**", "reports/**"]
 }

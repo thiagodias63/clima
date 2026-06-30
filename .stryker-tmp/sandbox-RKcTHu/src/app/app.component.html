@@ -1,12 +1,12 @@
 <div class="grid grid-flow-row gap-4 p-4 md:grid-flow-col">
   @if (citiesResource.isLoading()) {
-    <p>Carregando cidades...</p>
+  <p>Carregando cidades...</p>
   } @else if (citiesResource.error()) {
-    <p>Erro ao carregar cidades.</p>
+  <p>Erro ao carregar cidades.</p>
   } @else {
-    @for (c of citiesResource.value(); track c.city) {
-      <app-city [city]="c.city" [temperature]="toBigInt(c.temperature)"></app-city>
-    }
+  @for (c of citiesResource.value(); track c.city) {
+  <app-city [city]="c.city" [temperature]="c.temperature"></app-city>
+  }
   }
 </div>
 <router-outlet />

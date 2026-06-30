@@ -14,12 +14,4 @@ export class AppComponent {
   private cityService = inject(CityService);
 
   citiesResource = this.cityService.fetchCities();
-
-  toBigInt(val: string): bigint {
-    try {
-      return BigInt(val);
-    } catch {
-      return 0n;
-    }
-  }
 }

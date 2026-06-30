@@ -8,7 +8,7 @@ export const mockCityInterceptor: HttpInterceptorFn = (req, next) => {
     // Gerar um array de cidades mockadas
     const mockCities: City[] = Array.from({ length: 5 }, () => ({
       city: faker.location.city(),
-      temperature: faker.number.bigInt({ min: -10n, max: 50n }).toString(),
+      temperature: Number(faker.number.bigInt({ min: -10n, max: 50n }).toString()),
     }));
 
     return of(

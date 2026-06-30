@@ -10,5 +10,5 @@ import { NbCard, NbCardTitle, NbCardHeader, NbCardContent, NbTitle } from '@ng-b
 })
 export class CityComponent {
   city = input<string>();
-  temperature = input<bigint>();
+  temperature = input<number>();
 }
