@@ -6,6 +6,7 @@ import { NbCard, NbCardContent } from '@ng-brutalism/ui';
   selector: 'app-city-map',
   imports: [NbCard, NbCardContent],
   templateUrl: './city-map.component.html',
+  standalone: true,
 })
 export class CityMapComponent {
   private sanitizer = inject(DomSanitizer);

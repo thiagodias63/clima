@@ -1,5 +1,16 @@
 <div nbStack gap="md" class="p-4">
-  <div nbCluster gap="md" align="center">
+  <h3 nbTitle class="text-lg uppercase mt-4">Previsões por Cidade:</h3>
+  <div nbCluster gap="md">
+    @for (c of citiesResource.value(); track c.city) {
+    <app-city [city]="c.city" [temperature]="c.temperature" [latitude]="c.latitude"
+      [longitude]="c.longitude"></app-city>
+    }
+  </div>
+</div>
+<router-outlet />
+
+<!--
+<div nbCluster gap="md" align="center">
     <button nbButton [disabled]="isLoadingLocation()" (click)="detectLocation()">
       @if (isLoadingLocation()) {
         Detectando...
@@ -30,12 +41,4 @@
       </div>
     </div>
   }
-
-  <h3 nbTitle class="text-lg uppercase mt-4">Previsões por Cidade:</h3>
-  <div nbCluster gap="md">
-    @for (c of citiesResource.value(); track c.city) {
-      <app-city [city]="c.city" [temperature]="c.temperature"></app-city>
-    }
-  </div>
-</div>
-<router-outlet />
+-->

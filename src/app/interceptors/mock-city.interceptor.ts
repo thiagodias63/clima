@@ -9,8 +9,8 @@ export const mockCityInterceptor: HttpInterceptorFn = (req, next) => {
     const mockCities: City[] = Array.from({ length: 5 }, () => ({
       city: faker.location.city(),
       temperature: Number(faker.number.bigInt({ min: -10n, max: 50n }).toString()),
-      latitude: faker.location.latitude(),
-      longitude: faker.location.longitude(),
+      latitude: 52.520008,
+      longitude: 13.404954,
     }));
 
     return of(

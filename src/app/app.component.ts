@@ -1,7 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CityComponent } from './city/city.component';
-import { CityMapComponent } from './city-map/city-map.component';
 import { CityService } from './services/city.service';
 import { LocationService } from './services/location.service';
 import { City } from './interfaces/City';
@@ -9,16 +8,7 @@ import { NbButton, NbStack, NbCluster, NbCallout, NbTitle } from '@ng-brutalism/
 
 @Component({
   selector: 'app-root',
-  imports: [
-    RouterOutlet,
-    CityComponent,
-    CityMapComponent,
-    NbButton,
-    NbStack,
-    NbCluster,
-    NbCallout,
-    NbTitle,
-  ],
+  imports: [RouterOutlet, CityComponent, NbButton, NbStack, NbCluster, NbCallout, NbTitle],
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
