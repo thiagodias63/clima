@@ -14,6 +14,7 @@ describe('AppComponent', () => {
           isLoading: () => false,
           error: () => null,
           reload: () => true,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any;
       },
     };

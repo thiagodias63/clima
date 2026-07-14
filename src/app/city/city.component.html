@@ -2,7 +2,6 @@
   <nb-card>
     <nb-card-header>
       <nb-card-title>
-
         <h4 nbTitle class="text-lg font-black uppercase" data-testid="city">
           {{ city() }}
         </h4>
@@ -10,7 +9,11 @@
     </nb-card-header>
 
     <nb-card-content>
-      <h2 nbTitle class="font-mono text-4xl font-black leading-tight uppercase" data-testid="temperature">
+      <h2
+        nbTitle
+        class="font-mono text-4xl font-black leading-tight uppercase"
+        data-testid="temperature"
+      >
         {{ temperatureWithEmoji() }}
       </h2>
     </nb-card-content>
