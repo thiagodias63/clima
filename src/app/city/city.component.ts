@@ -6,7 +6,6 @@ import { CityMapComponent } from '../city-map/city-map.component';
   selector: 'app-city',
   imports: [NbCard, NbCardTitle, NbCardHeader, NbCardContent, NbTitle, CityMapComponent],
   templateUrl: './city.component.html',
-  styleUrl: './city.component.css',
 })
 export class CityComponent {
   city = input.required<string>();
