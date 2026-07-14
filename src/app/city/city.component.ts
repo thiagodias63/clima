@@ -10,6 +10,7 @@ import { NbCard, NbCardTitle, NbCardHeader, NbCardContent, NbTitle } from '@ng-b
 export class CityComponent {
   city = input.required<string>();
   temperature = input.required<number>();
+
   temperatureWithEmoji = computed(() => {
     const temperature = this.temperature();
     if (temperature > 10) {

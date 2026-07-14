@@ -1,5 +1,5 @@
-<div class="flex flex-col gap-4 p-4">
-  <div class="flex items-center gap-4 flex-wrap">
+<div nbStack gap="md" class="p-4">
+  <div nbCluster gap="md" align="center">
     <button nbButton [disabled]="isLoadingLocation()" (click)="detectLocation()">
       @if (isLoadingLocation()) {
         Detectando...
@@ -9,21 +9,30 @@
     </button>
 
     @if (locationError()) {
-      <span class="text-red-600 font-bold border-2 border-black p-2 bg-red-100">
+      <span nbCallout tone="danger" shadow="hard" class="p-2 font-bold">
         ⚠️ {{ locationError() }}
       </span>
     }
   </div>
 
   @if (localCity()) {
-    <div class="flex flex-col gap-2">
-      <h3 class="font-bold text-lg uppercase font-black">Sua Localização:</h3>
-      <app-city [city]="localCity()!.city" [temperature]="localCity()!.temperature"></app-city>
+    <div nbStack gap="xs">
+      <h3 nbTitle class="text-lg uppercase">Sua Localização:</h3>
+      <div nbCluster gap="md">
+        <app-city [city]="localCity()!.city" [temperature]="localCity()!.temperature"></app-city>
+
+        @if (localCity()!.latitude !== undefined && localCity()!.longitude !== undefined) {
+          <app-city-map
+            [latitude]="localCity()!.latitude!"
+            [longitude]="localCity()!.longitude!"
+          ></app-city-map>
+        }
+      </div>
     </div>
   }
 
-  <h3 class="font-bold text-lg uppercase font-black mt-4">Previsões por Cidade:</h3>
-  <div class="grid grid-flow-row gap-4 md:grid-flow-col">
+  <h3 nbTitle class="text-lg uppercase mt-4">Previsões por Cidade:</h3>
+  <div nbCluster gap="md">
     @for (c of citiesResource.value(); track c.city) {
       <app-city [city]="c.city" [temperature]="c.temperature"></app-city>
     }
