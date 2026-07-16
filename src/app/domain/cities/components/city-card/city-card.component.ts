@@ -1,10 +1,19 @@
 import { Component, computed, input } from '@angular/core';
 import { NbCard, NbCardTitle, NbCardHeader, NbCardContent, NbTitle } from '@ng-brutalism/ui';
 import { CityMapComponent } from '../city-map/city-map.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'city-card',
-  imports: [NbCard, NbCardTitle, NbCardHeader, NbCardContent, NbTitle, CityMapComponent],
+  imports: [
+    NbCard,
+    NbCardTitle,
+    NbCardHeader,
+    NbCardContent,
+    NbTitle,
+    CityMapComponent,
+    CommonModule,
+  ],
   templateUrl: './city-card.component.html',
 })
 export class CityCardComponent {
@@ -12,6 +21,7 @@ export class CityCardComponent {
   temperature = input.required<number>();
   latitude = input<number>();
   longitude = input<number>();
+  loading = input<boolean>(false);
 
   temperatureWithEmoji = computed(() => {
     const temperature = this.temperature();

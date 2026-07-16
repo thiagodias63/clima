@@ -33,7 +33,7 @@ export class CityAskLocationComponent {
         const mockTemp = Math.floor(Math.random() * 26) + 10;
 
         this.localCity.set({
-          city: `Local (${lat.toFixed(2)}, ${lon.toFixed(2)})`,
+          city: `Sua localização`,
           temperature: mockTemp,
           latitude: lat,
           longitude: lon,

@@ -1,9 +1,25 @@
 <div nbStack gap="md" class="p-4">
-  <h3 nbTitle class="text-lg uppercase mt-4">Previsões por Cidade:</h3>
+  <div class="flex justify-between">
+    <h3 nbTitle class="text-lg uppercase mt-4">Previsões por Cidade:</h3>
+    <div class="flex gap-4">
+      <button nbButton tone="secondary" (click)="toggleMap()">Mostrar mapa</button>
+      <button nbButton tone="accent" (click)="updateCities()">Atualizar</button>
+    </div>
+  </div>
   <div nbCluster gap="md">
-    @for (c of citiesResource.value(); track c.city) {
-    <city-card [city]="c.city" [temperature]="c.temperature" [latitude]="c.latitude" [longitude]="c.longitude" />
-    }
+    <div class="grid grid-cols-5 justify-between gap-x-4 w-full">
+      @if (citiesResource.isLoading()) {
+      @for (c of [0,1,2,3,4]; track c) {
+      <city-card city="Loading" [temperature]="0" [loading]="true" />
+      }
+      } @else {
+      @for (c of cities(); track c.city) {
+      <city-card [city]="c.city" [temperature]="c.temperature" [latitude]="c.latitude" [longitude]="c.longitude" />
+      }
+      }
+    </div>
+    <div class="grid grid-cols-5 justify-between gap-x-4 w-full">
+      <city-ask-location />
+    </div>
   </div>
 </div>
-<city-ask-location />

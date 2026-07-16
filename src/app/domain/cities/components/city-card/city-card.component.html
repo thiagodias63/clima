@@ -1,20 +1,22 @@
-<div class="w-80">
-  <nb-card>
-    <nb-card-header>
-      @if (latitude() && longitude()) {
-      <app-city-map [latitude]="latitude()!" [longitude]="longitude()!" />
-      }
-      <nb-card-title>
-        <h4 nbTitle class="text-lg font-black uppercase" data-testid="city">
-          {{ city() }}
-        </h4>
-      </nb-card-title>
-    </nb-card-header>
+<nb-card>
+  <nb-card-header>
+    @if (latitude() && longitude()) {
+    <app-city-map [latitude]="latitude()!" [longitude]="longitude()!" />
+    }
+    <nb-card-title>
+      <h4 nbTitle class="text-lg font-black uppercase" data-testid="city" [ngClass]="{
+          'bg-gray-300 rounded w-3/4 animate-pulse text-transparent': loading()
+        }">
+        {{ city() }}
+      </h4>
+    </nb-card-title>
+  </nb-card-header>
 
-    <nb-card-content>
-      <h2 nbTitle class="font-mono text-4xl font-black leading-tight uppercase" data-testid="temperature">
-        {{ temperatureWithEmoji() }}
-      </h2>
-    </nb-card-content>
-  </nb-card>
-</div>
+  <nb-card-content>
+    <h2 nbTitle class="font-mono text-4xl font-black leading-tight uppercase" data-testid="temperature" [ngClass]="{
+          'bg-gray-300 rounded w-3/4 animate-pulse text-transparent': loading()
+        }">
+      {{ temperatureWithEmoji() }}
+    </h2>
+  </nb-card-content>
+</nb-card>
