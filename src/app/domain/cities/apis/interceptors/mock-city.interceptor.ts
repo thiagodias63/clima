@@ -1,7 +1,7 @@
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { delay, of } from 'rxjs';
 import { faker } from '@faker-js/faker';
-import { City } from '../interfaces/City';
+import { City } from '../../interfaces/City';
 
 export const mockCityInterceptor: HttpInterceptorFn = (req, next) => {
   if (req.url.endsWith('/cities')) {

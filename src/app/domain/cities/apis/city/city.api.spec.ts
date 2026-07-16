@@ -2,19 +2,19 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { ApplicationRef } from '@angular/core';
-import { CityService } from './city.service';
+import { CityApi } from './city.api';
 import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 
-describe('CityService', () => {
-  let service: CityService;
+describe('CityApi', () => {
+  let service: CityApi;
   let httpMock: HttpTestingController;
   let appRef: ApplicationRef;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CityService, provideHttpClient(), provideHttpClientTesting()],
+      providers: [CityApi, provideHttpClient(), provideHttpClientTesting()],
     });
-    service = TestBed.inject(CityService);
+    service = TestBed.inject(CityApi);
     httpMock = TestBed.inject(HttpTestingController);
     appRef = TestBed.inject(ApplicationRef);
   });

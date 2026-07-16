@@ -3,11 +3,11 @@ import { NbCard, NbCardTitle, NbCardHeader, NbCardContent, NbTitle } from '@ng-b
 import { CityMapComponent } from '../city-map/city-map.component';
 
 @Component({
-  selector: 'app-city',
+  selector: 'city-card',
   imports: [NbCard, NbCardTitle, NbCardHeader, NbCardContent, NbTitle, CityMapComponent],
-  templateUrl: './city.component.html',
+  templateUrl: './city-card.component.html',
 })
-export class CityComponent {
+export class CityCardComponent {
   city = input.required<string>();
   temperature = input.required<number>();
   latitude = input<number>();
