@@ -1,10 +1,8 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NbCard, NbCardContent } from '@ng-brutalism/ui';
 
 @Component({
-  selector: 'app-city-map',
-  imports: [NbCard, NbCardContent],
+  selector: 'city-map',
   templateUrl: './city-map.component.html',
   standalone: true,
 })
