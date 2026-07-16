@@ -1,0 +1,25 @@
+<div nbCluster gap="md" align="center">
+  <button nbButton [disabled]="isLoadingLocation()" (click)="detectLocation()">
+    @if (isLoadingLocation()) {
+    Detectando...
+    } @else {
+    Detectar Minha Localização 📍
+    }
+  </button>
+
+  @if (locationError()) {
+  <span nbCallout tone="danger" shadow="hard" class="p-2 font-bold">
+    ⚠️ {{ locationError() }}
+  </span>
+  }
+</div>
+
+@if (localCity()) {
+<div nbStack gap="xs">
+  <h3 nbTitle class="text-lg uppercase">Sua Localização:</h3>
+  <div nbCluster gap="md">
+    <city-card [city]="localCity()!.city" [temperature]="localCity()!.temperature" [latitude]="localCity()!.latitude"
+      [longitude]="localCity()!.longitude" />
+  </div>
+</div>
+}

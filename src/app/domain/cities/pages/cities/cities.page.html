@@ -6,36 +6,4 @@
     }
   </div>
 </div>
-<!--
-<div nbCluster gap="md" align="center">
-    <button nbButton [disabled]="isLoadingLocation()" (click)="detectLocation()">
-      @if (isLoadingLocation()) {
-        Detectando...
-      } @else {
-        Detectar Minha Localização 📍
-      }
-    </button>
-
-    @if (locationError()) {
-      <span nbCallout tone="danger" shadow="hard" class="p-2 font-bold">
-        ⚠️ {{ locationError() }}
-      </span>
-    }
-  </div>
-
-  @if (localCity()) {
-    <div nbStack gap="xs">
-      <h3 nbTitle class="text-lg uppercase">Sua Localização:</h3>
-      <div nbCluster gap="md">
-        <app-city [city]="localCity()!.city" [temperature]="localCity()!.temperature"></app-city>
-
-        @if (localCity()!.latitude !== undefined && localCity()!.longitude !== undefined) {
-          <app-city-map
-            [latitude]="localCity()!.latitude!"
-            [longitude]="localCity()!.longitude!"
-          ></app-city-map>
-        }
-      </div>
-    </div>
-  }
--->
+<city-ask-location />
