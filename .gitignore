@@ -43,3 +43,4 @@ Thumbs.db
 
 /.stryker-tmp
 /reports/mutation/mutation.html
+reports/mutation/mutation.html

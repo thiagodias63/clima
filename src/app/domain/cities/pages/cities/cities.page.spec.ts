@@ -1,56 +1,112 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CitiesPage } from './cities.page';
+import { describe, beforeEach, it, expect, vi } from 'vitest';
+import { spyOn } from '@vitest/spy';
+import { CityApi } from '../../apis/city/city.api';
+import { City } from '../../interfaces/City';
 
-import { CityComponent } from './city.component';
-import { describe, beforeEach, it, expect } from 'vitest';
-
-describe('CityComponent', () => {
-  let component: CityComponent;
-  let fixture: ComponentFixture<CityComponent>;
+describe('CitiesPage', () => {
+  let component: CitiesPage;
+  let fixture: ComponentFixture<CitiesPage>;
+  const citiesMock: City[] = [
+    { city: 'Londres', temperature: 15, latitude: 3.3333, longitude: 4.4444 },
+  ];
+  const fetchCitiesMock = {
+    value: () => citiesMock,
+    isLoading: () => false,
+    error: () => null,
+    reload: () => true,
+  } as any;
+  let cityApiSpy: CityApi;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CityComponent],
+      imports: [CitiesPage],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CityComponent);
+    cityApiSpy = TestBed.inject(CityApi);
+    vi.spyOn(cityApiSpy, 'fetchCities').mockReturnValue(fetchCitiesMock);
+    fixture = TestBed.createComponent(CitiesPage);
     component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  it('should create', () => {
-    fixture.componentRef.setInput('city', 'Sao Paulo');
-    fixture.componentRef.setInput('temperature', 15);
-    fixture.detectChanges();
-
-    expect(component).toBeTruthy();
+  it('should display title', () => {
+    const city = fixture.nativeElement.querySelector('[data-testid="cities-title"]');
+    expect(city.textContent).toContain('Previsões por Cidade:');
   });
 
-  it('should display city in data-testid=city', () => {
-    fixture.componentRef.setInput('city', 'Sao Paulo');
-    fixture.componentRef.setInput('temperature', 15);
+  it('should display empty message when has no cities', () => {
+    const response = {
+      value: () => [],
+      isLoading: () => false,
+      error: () => null,
+      reload: () => true,
+    } as any;
+    vi.spyOn(cityApiSpy, 'fetchCities').mockReturnValueOnce(response);
+    fixture = TestBed.createComponent(CitiesPage);
     fixture.detectChanges();
-
-    const city = fixture.nativeElement.querySelector('[data-testid="city"]');
-
-    expect(city.textContent).toContain('Sao Paulo');
+    component = fixture.componentInstance;
+    const noCitiesMessageEl = fixture.nativeElement.querySelector(
+      '[data-testid="no-cities-to-show"]',
+    );
+    expect(noCitiesMessageEl.textContent).toContain('⚠️ Nenhuma cidade para mostrar');
+    expect(component.cities().length).toEqual(0);
   });
 
-  it('should display temperature with sun emoji when temperature is greater than 10', () => {
-    fixture.componentRef.setInput('city', 'Sao Paulo');
-    fixture.componentRef.setInput('temperature', 15);
-    fixture.detectChanges();
+  describe('toggle map', () => {
+    let toggleMapButton: HTMLButtonElement;
+    beforeEach(() => {
+      toggleMapButton = fixture.nativeElement.querySelector('[data-testid="toggle-map-button"]');
+    });
 
-    const temperature = fixture.nativeElement.querySelector('[data-testid="temperature"]');
+    it('should show maps when click on "toggle map" once', () => {
+      expect(fixture.nativeElement.querySelector('city-map')).toBeNull();
+      toggleMapButton.click();
+      fixture.detectChanges();
+      expect(fixture.nativeElement.querySelector('city-map')).not.toBeNull();
+      component.cities()?.forEach(city => {
+        expect(city.index).toBeDefined();
+        expect(city.city).toBeDefined();
+        expect(city.temperature).toBeDefined();
+        expect(city.latitude).not.toBeUndefined();
+        expect(city.longitude).not.toBeUndefined();
+      });
+    });
 
-    expect(temperature.textContent).toContain('15ºc ☀️');
+    it('should hide maps when click on "toggle map" twice', () => {
+      expect(fixture.nativeElement.querySelector('city-map')).toBeNull();
+      // first click
+      toggleMapButton.click();
+      fixture.detectChanges();
+      expect(fixture.nativeElement.querySelector('city-map')).not.toBeNull();
+      // second click
+      toggleMapButton.click();
+      fixture.detectChanges();
+      expect(fixture.nativeElement.querySelector('city-map')).toBeNull();
+      component.cities()?.forEach(city => {
+        expect(city.index).toBeDefined();
+        expect(city.city).toBeDefined();
+        expect(city.temperature).toBeDefined();
+        expect(city.latitude).toBeUndefined();
+        expect(city.longitude).toBeUndefined();
+      });
+    });
   });
 
-  it('should display temperature with snow emoji when temperature is less than or equal to 10', () => {
-    fixture.componentRef.setInput('city', 'Sao Paulo');
-    fixture.componentRef.setInput('temperature', 10);
-    fixture.detectChanges();
+  describe('update cities', () => {
+    let updateCitiesButton: HTMLButtonElement;
+    beforeEach(() => {
+      updateCitiesButton = fixture.nativeElement.querySelector(
+        '[data-testid="update-cities-button"]',
+      );
+    });
 
-    const temperature = fixture.nativeElement.querySelector('[data-testid="temperature"]');
-
-    expect(temperature.textContent).toContain('10ºc ❄️');
+    it('should update the cities list when click on "update cities"', () => {
+      const spy = spyOn(component.citiesResource, 'reload');
+      updateCitiesButton.click();
+      fixture.detectChanges();
+      expect(spy).toHaveBeenCalledWith();
+    });
   });
 });

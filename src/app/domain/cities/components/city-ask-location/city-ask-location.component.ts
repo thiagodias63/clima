@@ -3,6 +3,7 @@ import { City } from '../../interfaces/City';
 import { LocationService } from '../../services/location/location.service';
 import { CityCardComponent } from '../city-card/city-card.component';
 import { NbStack, NbCluster, NbButton, NbCallout } from '@ng-brutalism/ui';
+import { Position } from '../../interfaces/Position';
 
 @Component({
   selector: 'city-ask-location',
@@ -24,13 +25,13 @@ export class CityAskLocationComponent {
 
     this.locationService
       .getCurrentPosition()
-      .then((position: any) => {
-        console.log(position);
+      .then((position: Position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
         // Gerar temperatura mockada (entre 10 e 35 graus)
-        const mockTemp = Math.floor(Math.random() * 26) + 10;
+        // const mockTemp = Math.floor(Math.random() * 26) + 10;
+        const mockTemp = 21;
 
         this.localCity.set({
           city: `Sua localização`,
@@ -41,7 +42,6 @@ export class CityAskLocationComponent {
         this.isLoadingLocation.set(false);
       })
       .catch((error: any) => {
-        console.error('Erro de geolocalização:', error);
         let errorMsg = 'Não foi possível obter a sua localização.';
         if (error.code === 1) {
           errorMsg = 'Permissão de localização negada.';

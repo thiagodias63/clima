@@ -12,10 +12,6 @@ describe('LocationService', () => {
     service = TestBed.inject(LocationService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
   it('should resolve position when geolocation is successful', async () => {
     const mockPosition = {
       coords: {
@@ -24,8 +20,8 @@ describe('LocationService', () => {
       },
     } as GeolocationPosition;
 
-    const getCurrentPositionSpy = vi.fn(successCallback => {
-      successCallback(mockPosition);
+    const getCurrentPositionSpy = vi.fn(resolve => {
+      resolve(mockPosition);
     });
 
     vi.stubGlobal('navigator', {
@@ -38,6 +34,18 @@ describe('LocationService', () => {
     expect(position.coords.latitude).toBe(-23.55);
     expect(position.coords.longitude).toBe(-46.63);
     expect(getCurrentPositionSpy).toHaveBeenCalled();
+
+    vi.unstubAllGlobals();
+  });
+
+  it('should reject when geolocation is undefiend', async () => {
+    vi.stubGlobal('navigator', {
+      geolocation: undefined,
+    });
+
+    await expect(service.getCurrentPosition()).rejects.toThrow(
+      'Geolocalização não é suportada por este navegador.',
+    );
 
     vi.unstubAllGlobals();
   });

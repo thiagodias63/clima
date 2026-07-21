@@ -19,17 +19,18 @@ export class CitiesPage {
   }
 
   cities = computed(() => {
-    const cities = this.citiesResource.value();
+    const cities = this.citiesResource.value()!;
     const showMap = this.showMap();
-    if (cities?.length && !showMap) {
-      return cities?.map(c => ({
+    if (cities.length && !showMap) {
+      return cities.map((c, index) => ({
+        index,
         city: c.city,
         temperature: c.temperature,
         latitude: undefined,
         longitude: undefined,
       }));
     }
-    return cities;
+    return cities.map((c, index) => ({ ...c, index }));
   });
 
   toggleMap(): void {

@@ -1,5 +1,6 @@
 <div nbCluster gap="md" align="center">
-  <button nbButton [disabled]="isLoadingLocation()" (click)="detectLocation()" tone="accent">
+  <button nbButton [disabled]="isLoadingLocation()" (click)="detectLocation()" tone="accent"
+    data-testid="detect-location-button">
     @if (isLoadingLocation()) {
     Detectando...
     } @else {
@@ -8,14 +9,14 @@
   </button>
 
   @if (locationError()) {
-  <span nbCallout tone="danger" shadow="hard" class="p-2 font-bold">
+  <span nbCallout tone="danger" shadow="hard" class="p-2 font-bold" data-testid="detect-location-error-message">
     ⚠️ {{ locationError() }}
   </span>
   }
 </div>
 
 @if (localCity()) {
-<div nbStack gap="xs" class="mt-4">
+<div nbStack gap="xs" class="mt-4" data-testid="local-city">
   <div nbCluster gap="md">
     <city-card [city]="localCity()!.city" [temperature]="localCity()!.temperature" [latitude]="localCity()!.latitude"
       [longitude]="localCity()!.longitude" />
