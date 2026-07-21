@@ -32,7 +32,6 @@ yarn-error.log
 /.angular/cache
 .sass-cache/
 /connect.lock
-/coverage
 /libpeerconnection.log
 testem.log
 /typings
@@ -41,9 +40,13 @@ testem.log
 .DS_Store
 Thumbs.db
 
-/.stryker-tmp
-/reports/
+
+# Test coverage
+coverage/
+
+# Stryker mutation testing reports
 reports/
 .stryker-tmp/
-/.stryker-tmp/
-/.stryker-tmp/
+
+# Test artifacts
+*.log

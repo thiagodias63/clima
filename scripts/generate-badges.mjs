@@ -4,13 +4,11 @@ const coverage = JSON.parse(
   fs.readFileSync('coverage/coverage-summary.json', 'utf8')
 );
 
-const mutation = JSON.parse(
+const mutationReport = JSON.parse(
   fs.readFileSync('reports/mutation/mutation.json', 'utf8')
 );
 
 const coverageScore = coverage.total.lines.pct;
-
-const mutationScore = mutation.mutationScore;
 
 fs.mkdirSync('badges', { recursive: true });
 
@@ -23,6 +21,24 @@ fs.writeFileSync(
     color: getColor(coverageScore),
   })
 );
+
+
+const mutants = Object.values(mutationReport)
+  .filter(file => file && Array.isArray(file.mutants))
+  .flatMap(file => file.mutants);
+
+const killed = mutants.filter(
+  mutant => mutant.status === 'Killed',
+).length;
+
+const survived = mutants.filter(
+  mutant => mutant.status === 'Survived',
+).length;
+
+const mutationScore =
+  killed + survived === 0
+    ? 100
+    : (killed / (killed + survived)) * 100;
 
 fs.writeFileSync(
   'badges/mutation.json',
