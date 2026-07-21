@@ -31,3 +31,29 @@ jobs:
         
       - name: Run mutation tests (Stryker)
         run: npm run stryker
+
+      - name: Generate badges
+        run: npm run badges
+
+      - name: Update Gist
+        env:
+          GH_TOKEN: ${{ secrets.GIST_TOKEN }}
+          GIST_ID: ${{ secrets.GIST_ID }}
+        run: |
+          curl \
+            -X PATCH \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/gists/$GIST_ID \
+            -d @- <<EOF
+          {
+            "files": {
+              "coverage.json": {
+                "content": "$(cat badges/coverage.json)"
+              },
+              "mutation.json": {
+                "content": "$(cat badges/mutation.json)"
+              }
+            }
+          }
+          EOF
