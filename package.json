@@ -11,7 +11,8 @@
     "test:vitest": "vitest run",
     "lint": "ng lint",
     "format": "prettier --write .",
-    "stryker": "stryker run"
+    "stryker": "stryker run",
+    "badges": "node scripts/generate-badges.mjs"
   },
   "private": true,
   "dependencies": {
