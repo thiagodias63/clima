@@ -9,5 +9,14 @@ export default defineConfig(({ mode }) => ({
     setupFiles: ['src/test-setup.ts'],
     environment: 'jsdom',
     include: ['src/**/*.{test,spec}.ts'],
+    coverage: {
+      provider: 'v8',
+      reporter: [
+        'text',
+        'html',
+        'json-summary',
+        'lcov',
+      ],
+    },
   },
 }));
