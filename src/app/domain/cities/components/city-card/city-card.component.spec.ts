@@ -1,18 +1,17 @@
+import { describe, beforeEach, it, expect } from 'vitest';
+import { CityCardComponent } from './city-card.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CityComponent } from './city.component';
-import { describe, beforeEach, it, expect } from 'vitest';
-
-describe('CityComponent', () => {
-  let component: CityComponent;
-  let fixture: ComponentFixture<CityComponent>;
+describe('CityCardComponent', () => {
+  let component: CityCardComponent;
+  let fixture: ComponentFixture<CityCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CityComponent],
+      imports: [CityCardComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CityComponent);
+    fixture = TestBed.createComponent(CityCardComponent);
     component = fixture.componentInstance;
   });
 
@@ -22,9 +21,36 @@ describe('CityComponent', () => {
     fixture.detectChanges();
 
     expect(component).toBeTruthy();
+    expect(component.loading()).toBeFalsy();
+    expect(component.latitude()).toBeUndefined();
+    expect(component.longitude()).toBeUndefined();
   });
 
-  it('should display city in data-testid=city', () => {
+  describe('city map', () => {
+    it('should display city map if it has latitude and longitude', () => {
+      fixture.componentRef.setInput('latitude', 1);
+      fixture.componentRef.setInput('longitude', 1);
+      fixture.componentRef.setInput('city', 'Sao Paulo');
+      fixture.componentRef.setInput('temperature', 15);
+      fixture.detectChanges();
+
+      const cityMap = fixture.nativeElement.querySelector('city-map');
+
+      expect(cityMap).toBeDefined();
+    });
+
+    it('should hide city map if it has latitude and longitude', () => {
+      fixture.componentRef.setInput('city', 'Sao Paulo');
+      fixture.componentRef.setInput('temperature', 15);
+      fixture.detectChanges();
+
+      const cityMap = fixture.nativeElement.querySelector('city-map');
+
+      expect(cityMap).toBeNull();
+    });
+  });
+
+  it('should display city name', () => {
     fixture.componentRef.setInput('city', 'Sao Paulo');
     fixture.componentRef.setInput('temperature', 15);
     fixture.detectChanges();

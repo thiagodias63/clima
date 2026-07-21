@@ -1,0 +1,4 @@
+- layouts
+  - auth layout
+  - default layout
+- components: components to serve the layouts

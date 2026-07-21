@@ -7,7 +7,7 @@ const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommen
 
 module.exports = defineConfig([
   {
-    ignores: ["src/index.html"],
+    ignores: ['src/index.html'],
   },
   {
     files: ['**/*.ts'],
