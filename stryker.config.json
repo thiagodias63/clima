@@ -6,13 +6,21 @@
   "tsconfigFile": "tsconfig.spec.json",
   "disableTypeChecks": true,
   "ignoreStatic": true,
+  "timeoutMS": 10000,
+  "timeoutFactor": 2,
   "vitest": {
     "configFile": "vite.config.ts"
   },
   "mutate": [
-    "src/app/services/city.service.ts",
-    "src/app/app.component.ts",
-    "src/app/city/city.component.ts"
+    "src/app/**/*.guard.ts",
+    "src/app/**/*.interceptor.ts",
+    "src/app/**/*.component.ts",
+    "src/app/**/*.page.ts",
+    "src/app/**/*.pipe.ts",
+    "src/app/**/*.service.ts",
+    "src/app/**/*.page.ts",
+    "!src/app/**/*.spec.ts",
+    "!src/app/**/*.util.ts"
   ],
   "ignorePatterns": ["dist/**", ".angular/**", ".stryker-tmp/**", "coverage/**", "reports/**"]
 }
