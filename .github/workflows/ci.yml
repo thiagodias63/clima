@@ -27,8 +27,8 @@ jobs:
         run: npm run build
 
       - name: Run unit tests (Vitest)
-        run: npm run test:vitest
-        
+        run: npm run test:vitest:coverage
+
       - name: Run mutation tests (Stryker)
         run: npm run stryker
 

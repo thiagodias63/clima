@@ -42,5 +42,8 @@ testem.log
 Thumbs.db
 
 /.stryker-tmp
-/reports/mutation/mutation.html
-reports/mutation/mutation.html
+/reports/
+reports/
+.stryker-tmp/
+/.stryker-tmp/
+/.stryker-tmp/
