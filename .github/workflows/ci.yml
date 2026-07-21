@@ -40,20 +40,21 @@ jobs:
           GH_TOKEN: ${{ secrets.GIST_TOKEN }}
           GIST_ID: ${{ secrets.GIST_ID }}
         run: |
-          curl \
-            -X PATCH \
-            -H "Authorization: Bearer $GH_TOKEN" \
-            -H "Accept: application/vnd.github+json" \
-            https://api.github.com/gists/$GIST_ID \
-            -d @- <<EOF
-          {
-            "files": {
-              "coverage.json": {
-                "content": "$(cat badges/coverage.json)"
-              },
-              "mutation.json": {
-                "content": "$(cat badges/mutation.json)"
+          jq -n \
+            --arg coverage "$(cat badges/coverage.json)" \
+            --arg mutation "$(cat badges/mutation.json)" \
+            '{
+              files: {
+                "coverage.json": {
+                  content: $coverage
+                },
+                "mutation.json": {
+                  content: $mutation
+                }
               }
-            }
-          }
-          EOF
+            }' > gist-payload.json
+      
+          gh api \
+            --method PATCH \
+            "/gists/$GIST_ID" \
+            --input gist-payload.json
