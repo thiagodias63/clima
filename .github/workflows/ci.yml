@@ -29,8 +29,10 @@ jobs:
       - name: Run unit tests (Vitest)
         run: npm run test:vitest
 
-      - name: Extract Coverage & Generate Badge
-        uses: ykoksos/action-vitest-coverage-summary@v1
-
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: ./coverage/lcov.info
+          fail_ci_if_error: true
       - name: Run mutation tests (Stryker)
         run: npm run stryker
