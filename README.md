@@ -1,4 +1,5 @@
 # Clima 🌤️
+[![CI](https://github.com/thiagodias63/clima/actions/workflows/ci.yml/badge.svg)](https://github.com/thiagodias63/clima/actions/workflows/ci.yml)
 
 **Clima** (Portuguese for _Weather_) is a modern web application built to showcase the latest features of Angular alongside advanced testing and development workflows. The application displays the current temperature in Celsius for a curated list of cities.
 
