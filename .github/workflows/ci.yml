@@ -30,7 +30,7 @@ jobs:
         run: npm run test:vitest
 
       - name: Extract Coverage & Generate Badge
-        uses: jraphson/cobadge@v1
+        uses: ykoksos/action-vitest-coverage-summary@v1
 
       - name: Run mutation tests (Stryker)
         run: npm run stryker
