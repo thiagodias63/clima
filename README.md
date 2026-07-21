@@ -1,6 +1,10 @@
 # Clima 🌤️
 [![CI](https://github.com/thiagodias63/clima/actions/workflows/ci.yml/badge.svg)](https://github.com/thiagodias63/clima/actions/workflows/ci.yml)
 
+![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/thiagodias63/0ddf194bc195478bbe2ce5f59cb022ee/raw/coverage.json)
+
+![Mutation](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/thiagodias63/0ddf194bc195478bbe2ce5f59cb022ee/raw/mutation.json)
+
 **Clima** (Portuguese for _Weather_) is a modern web application built to showcase the latest features of Angular alongside advanced testing and development workflows. The application displays the current temperature in Celsius for a curated list of cities.
 
 Rather than relying on a live production API, the project serves as a comprehensive boilerplate and proof-of-concept (PoC) for robust frontend architecture, local data mocking, and high-coverage mutation testing.
