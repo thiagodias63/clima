@@ -1,44 +1,92 @@
-<div nbStack gap="md" class="p-4">
-  <div class="flex justify-between">
-    <h3 nbTitle class="text-lg uppercase mt-4" data-testid="cities-title">Previsões por Cidade:
-    </h3>
-    <div class="flex gap-4">
-      <button data-testid="toggle-map-button" nbButton tone="secondary" (click)="toggleMap()">Mostrar mapa</button>
-      <button data-testid="update-cities-button" nbButton tone="accent" (click)="updateCities()">Atualizar</button>
-      <button data-testid="show-as-list-grid-button" nbButton tone="accent" (click)="toggleShowType()">
-        @if (showType() === 'list') {
-        <img src="https://api.iconify.design/ic:twotone-list.svg" alt="twotone-list" width="24" height="24" />
-        } @else {
-        <img src="https://api.iconify.design/boxicons:grid.svg" alt="grid" width="24" height="24" />
-        }
-      </button>
-    </div>
-  </div>
-  <div nbCluster gap="md">
-    <div class="grid justify-between gap-x-4 w-full gap-y-3" [class.grid-cols-5]="showType() === 'grid'"
-      [class.grid-cols-1]="showType() === 'list'" data-testid="cities-list">
-      @if (citiesResource.isLoading()) {
-      @for (c of [0,1,2,3,4]; track c) {
-      <city-card [showType]="showType()" [class.col-span-full]="showType() === 'list'"
-        [attr.data-testid]="'skeleton-city-index-'+c" city="Loading" [temperature]="0" [loading]="true" />
-      }
-      } @else {
-      @for (c of cities(); track c.city) {
-      <city-card [showType]="showType()" [class.col-span-full]="showType() === 'list'"
-        [attr.data-testid]="'city-index-'+c.index" [city]="c.city" [temperature]="c.temperature" [latitude]="c.latitude"
-        [longitude]="c.longitude" />
-      }
-      }
-    </div>
-    @if (!cities().length) {
-    <div class="grid grid-cols-5 justify-between gap-x-4 w-full" data-testid="no-cities-to-show">
-      <span nbCallout tone="danger" shadow="hard" class="p-2 font-bold">
-        ⚠️ Nenhuma cidade para mostrar
-      </span>
-    </div>
-    }
-    <div class="grid grid-cols-5 justify-between gap-x-4 w-full">
-      <city-ask-location class="col-span-full" />
-    </div>
-  </div>
+<div
+	nbStack
+	gap="md"
+	class="p-4">
+	<div class="flex justify-between">
+		<h3
+			nbTitle
+			class="text-lg uppercase mt-4"
+			data-testid="cities-title">
+			Previsões por Cidade:
+		</h3>
+		<div class="flex gap-4">
+			<button
+				data-testid="toggle-map-button"
+				nbButton
+				tone="secondary"
+				(click)="toggleMap()">
+				Mostrar mapa
+			</button>
+			<button
+				data-testid="update-cities-button"
+				nbButton
+				tone="accent"
+				(click)="updateCities()">
+				Atualizar
+			</button>
+			<button
+				data-testid="show-as-list-grid-button"
+				nbButton
+				tone="accent"
+				(click)="toggleShowType()">
+				@if (showType() === 'list') {
+				<img
+					src="https://api.iconify.design/ic:twotone-list.svg"
+					alt="twotone-list"
+					width="24"
+					height="24" />
+				} @else {
+				<img
+					src="https://api.iconify.design/boxicons:grid.svg"
+					alt="grid"
+					width="24"
+					height="24" />
+				}
+			</button>
+		</div>
+	</div>
+	<div
+		nbCluster
+		gap="md">
+		<div
+			class="grid justify-between gap-x-4 w-full gap-y-3"
+			[class.grid-cols-5]="showType() === 'grid'"
+			[class.grid-cols-1]="showType() === 'list'"
+			data-testid="cities-list">
+			@if (citiesResource.isLoading()) { @for (c of [0,1,2,3,4]; track c) {
+			<city-card
+				[showType]="showType()"
+				[class.col-span-full]="showType() === 'list'"
+				[attr.data-testid]="'skeleton-city-index-'+c"
+				city="Loading"
+				[temperature]="0"
+				[loading]="true" />
+			} } @else { @for (c of cities(); track c.city) {
+			<city-card
+				[showType]="showType()"
+				[class.col-span-full]="showType() === 'list'"
+				[attr.data-testid]="'city-index-'+c.index"
+				[city]="c.city"
+				[temperature]="c.temperature"
+				[latitude]="c.latitude"
+				[longitude]="c.longitude" />
+			} }
+		</div>
+		@if (!cities().length) {
+		<div
+			class="grid grid-cols-5 justify-between gap-x-4 w-full"
+			data-testid="no-cities-to-show">
+			<span
+				nbCallout
+				tone="danger"
+				shadow="hard"
+				class="p-2 font-bold">
+				⚠️ Nenhuma cidade para mostrar
+			</span>
+		</div>
+		}
+		<div class="grid grid-cols-5 justify-between gap-x-4 w-full">
+			<city-ask-location class="col-span-full" />
+		</div>
+	</div>
 </div>

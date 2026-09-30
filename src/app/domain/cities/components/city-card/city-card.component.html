@@ -1,32 +1,43 @@
 <ng-template #cityName>
-  <h4 nbTitle class="text-lg font-black uppercase" data-testid="city" [ngClass]="{
-            'bg-gray-300 rounded w-3/4 animate-pulse text-transparent': loading()
-          }">
-    {{ city() }}
-  </h4>
+	<h4
+		nbTitle
+		class="text-lg font-black uppercase"
+		data-testid="city"
+		[ngClass]="{
+			'bg-gray-300 rounded w-3/4 animate-pulse text-transparent': loading(),
+		}">
+		{{ city() }}
+	</h4>
 </ng-template>
 <nb-card>
-  @if (showType() === 'grid') {
-  <nb-card-header>
-    @if (latitude() && longitude()) {
-    <city-map [latitude]="latitude()!" [longitude]="longitude()!" />
-    }
-    <nb-card-title>
-      <ng-container *ngTemplateOutlet="cityName"></ng-container>
-    </nb-card-title>
-  </nb-card-header>
-  }
+	@if (showType() === 'grid') {
+		<nb-card-header>
+			@if (latitude() && longitude()) {
+				<city-map
+					[latitude]="latitude()!"
+					[longitude]="longitude()!" />
+			}
+			<nb-card-title>
+				<ng-container *ngTemplateOutlet="cityName"></ng-container>
+			</nb-card-title>
+		</nb-card-header>
+	}
 
-  <nb-card-content [ngClass]="{
-    'flex items-center gap-3': showType() === 'list'
-  }">
-    @if (showType() === 'list') {
-    <ng-container *ngTemplateOutlet=" cityName"></ng-container>
-    }
-    <h2 nbTitle class="font-mono text-4xl font-black leading-tight uppercase" data-testid="temperature" [ngClass]="{
-          'bg-gray-300 rounded w-3/4 animate-pulse text-transparent': loading()
-        }">
-      {{ temperatureWithEmoji() }}
-    </h2>
-  </nb-card-content>
+	<nb-card-content
+		[ngClass]="{
+			'flex items-center gap-3': showType() === 'list',
+		}">
+		@if (showType() === 'list') {
+			<ng-container *ngTemplateOutlet="cityName"></ng-container>
+		}
+		<h2
+			nbTitle
+			class="font-mono text-4xl font-black leading-tight uppercase"
+			data-testid="temperature"
+			[ngClass]="{
+				'bg-gray-300 rounded w-3/4 animate-pulse text-transparent': loading(),
+			}">
+			{{ temperatureWithEmoji() }}
+		</h2>
+	</nb-card-content>
 </nb-card>

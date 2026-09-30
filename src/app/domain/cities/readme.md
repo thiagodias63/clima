@@ -1,12 +1,12 @@
 - apis: backend centralization of http requests
-  - files: .api.ts
+    - files: .api.ts
 - components: domain components to be used in domain pages
 - constants, enums, interfaces: domain types
-  - files:
-    - .constant.ts,
-    - eStatus > status.enum.ts,
-    - iUser > user.interface.ts
+    - files:
+        - .constant.ts,
+        - eStatus > status.enum.ts,
+        - iUser > user.interface.ts
 - pages: domain pages
-  - files:
-    - .page.ts,
+    - files:
+        - .page.ts,
 - services: business logic

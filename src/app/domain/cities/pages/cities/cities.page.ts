@@ -5,40 +5,40 @@ import { CityCardComponent } from '../../components/city-card/city-card.componen
 import { CityAskLocationComponent } from '../../components/city-ask-location/city-ask-location.component';
 
 @Component({
-  templateUrl: './cities.page.html',
-  imports: [CityCardComponent, CityAskLocationComponent, NbStack, NbCluster, NbTitle, NbButton],
-  standalone: true,
+	templateUrl: './cities.page.html',
+	imports: [CityCardComponent, CityAskLocationComponent, NbStack, NbCluster, NbTitle, NbButton],
+	standalone: true,
 })
 export class CitiesPage {
-  private cityApi = inject(CityApi);
-  citiesResource = this.cityApi.fetchCities();
-  showMap = signal<boolean>(false);
-  showType = signal<'list' | 'grid'>('grid');
+	private cityApi = inject(CityApi);
+	citiesResource = this.cityApi.fetchCities();
+	showMap = signal<boolean>(false);
+	showType = signal<'list' | 'grid'>('grid');
 
-  updateCities(): void {
-    this.citiesResource.reload();
-  }
+	updateCities(): void {
+		this.citiesResource.reload();
+	}
 
-  cities = computed(() => {
-    const cities = this.citiesResource.value()!;
-    const showMap = this.showMap();
-    if (cities.length && !showMap) {
-      return cities.map((c, index) => ({
-        index,
-        city: c.city,
-        temperature: c.temperature,
-        latitude: undefined,
-        longitude: undefined,
-      }));
-    }
-    return cities.map((c, index) => ({ ...c, index }));
-  });
+	cities = computed(() => {
+		const cities = this.citiesResource.value()!;
+		const showMap = this.showMap();
+		if (cities.length && !showMap) {
+			return cities.map((c, index) => ({
+				index,
+				city: c.city,
+				temperature: c.temperature,
+				latitude: undefined,
+				longitude: undefined,
+			}));
+		}
+		return cities.map((c, index) => ({ ...c, index }));
+	});
 
-  toggleMap(): void {
-    this.showMap.update(showMap => !showMap);
-  }
+	toggleMap(): void {
+		this.showMap.update((showMap) => !showMap);
+	}
 
-  toggleShowType(): void {
-    this.showType.update(showType => (showType === 'list' ? 'grid' : 'list'));
-  }
+	toggleShowType(): void {
+		this.showType.update((showType) => (showType === 'list' ? 'grid' : 'list'));
+	}
 }

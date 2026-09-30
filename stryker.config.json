@@ -1,26 +1,26 @@
 {
-  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
-  "packageManager": "npm",
-  "reporters": ["html", "clear-text", "json", "progress"],
-  "testRunner": "vitest",
-  "tsconfigFile": "tsconfig.spec.json",
-  "disableTypeChecks": true,
-  "ignoreStatic": true,
-  "timeoutMS": 10000,
-  "timeoutFactor": 2,
-  "vitest": {
-    "configFile": "vite.config.ts"
-  },
-  "mutate": [
-    "src/app/**/*.guard.ts",
-    "src/app/**/*.interceptor.ts",
-    "src/app/**/*.component.ts",
-    "src/app/**/*.page.ts",
-    "src/app/**/*.pipe.ts",
-    "src/app/**/*.service.ts",
-    "src/app/**/*.page.ts",
-    "!src/app/**/*.spec.ts",
-    "!src/app/**/*.util.ts"
-  ],
-  "ignorePatterns": ["dist/**", ".angular/**", ".stryker-tmp/**", "coverage/**", "reports/**"]
+	"$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+	"packageManager": "npm",
+	"reporters": ["html", "clear-text", "json", "progress"],
+	"testRunner": "vitest",
+	"tsconfigFile": "tsconfig.spec.json",
+	"disableTypeChecks": true,
+	"ignoreStatic": true,
+	"timeoutMS": 10000,
+	"timeoutFactor": 2,
+	"vitest": {
+		"configFile": "vite.config.ts"
+	},
+	"mutate": [
+		"src/app/**/*.guard.ts",
+		"src/app/**/*.interceptor.ts",
+		"src/app/**/*.component.ts",
+		"src/app/**/*.page.ts",
+		"src/app/**/*.pipe.ts",
+		"src/app/**/*.service.ts",
+		"src/app/**/*.page.ts",
+		"!src/app/**/*.spec.ts",
+		"!src/app/**/*.util.ts"
+	],
+	"ignorePatterns": ["dist/**", ".angular/**", ".stryker-tmp/**", "coverage/**", "reports/**"]
 }

@@ -1,4 +1,5 @@
 # Clima 🌤️
+
 [![CI](https://github.com/thiagodias63/clima/actions/workflows/ci.yml/badge.svg)](https://github.com/thiagodias63/clima/actions/workflows/ci.yml)
 
 ![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/thiagodias63/0ddf194bc195478bbe2ce5f59cb022ee/raw/coverage.json)
