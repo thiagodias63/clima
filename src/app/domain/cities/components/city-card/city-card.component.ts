@@ -22,6 +22,7 @@ export class CityCardComponent {
   latitude = input<number>();
   longitude = input<number>();
   loading = input<boolean>(false);
+  showType = input.required<'list' | 'grid'>();
 
   temperatureWithEmoji = computed(() => {
     const temperature = this.temperature();

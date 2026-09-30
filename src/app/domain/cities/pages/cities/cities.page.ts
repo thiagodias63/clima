@@ -13,6 +13,7 @@ export class CitiesPage {
   private cityApi = inject(CityApi);
   citiesResource = this.cityApi.fetchCities();
   showMap = signal<boolean>(false);
+  showType = signal<'list' | 'grid'>('grid');
 
   updateCities(): void {
     this.citiesResource.reload();
@@ -35,5 +36,9 @@ export class CitiesPage {
 
   toggleMap(): void {
     this.showMap.update(showMap => !showMap);
+  }
+
+  toggleShowType(): void {
+    this.showType.update(showType => (showType === 'list' ? 'grid' : 'list'));
   }
 }
