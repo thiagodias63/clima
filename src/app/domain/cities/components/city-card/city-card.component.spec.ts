@@ -18,6 +18,7 @@ describe('CityCardComponent', () => {
   it('should create', () => {
     fixture.componentRef.setInput('city', 'Sao Paulo');
     fixture.componentRef.setInput('temperature', 15);
+    fixture.componentRef.setInput('showType', 'grid');
     fixture.detectChanges();
 
     expect(component).toBeTruthy();
@@ -32,16 +33,18 @@ describe('CityCardComponent', () => {
       fixture.componentRef.setInput('longitude', 1);
       fixture.componentRef.setInput('city', 'Sao Paulo');
       fixture.componentRef.setInput('temperature', 15);
+      fixture.componentRef.setInput('showType', 'grid');
       fixture.detectChanges();
 
       const cityMap = fixture.nativeElement.querySelector('city-map');
 
-      expect(cityMap).toBeDefined();
+      expect(cityMap).not.toBeNull();
     });
 
     it('should hide city map if it has latitude and longitude', () => {
       fixture.componentRef.setInput('city', 'Sao Paulo');
       fixture.componentRef.setInput('temperature', 15);
+      fixture.componentRef.setInput('showType', 'grid');
       fixture.detectChanges();
 
       const cityMap = fixture.nativeElement.querySelector('city-map');
@@ -53,6 +56,7 @@ describe('CityCardComponent', () => {
   it('should display city name', () => {
     fixture.componentRef.setInput('city', 'Sao Paulo');
     fixture.componentRef.setInput('temperature', 15);
+    fixture.componentRef.setInput('showType', 'grid');
     fixture.detectChanges();
 
     const city = fixture.nativeElement.querySelector('[data-testid="city"]');
@@ -63,6 +67,7 @@ describe('CityCardComponent', () => {
   it('should display temperature with sun emoji when temperature is greater than 10', () => {
     fixture.componentRef.setInput('city', 'Sao Paulo');
     fixture.componentRef.setInput('temperature', 15);
+    fixture.componentRef.setInput('showType', 'grid');
     fixture.detectChanges();
 
     const temperature = fixture.nativeElement.querySelector('[data-testid="temperature"]');
@@ -73,6 +78,7 @@ describe('CityCardComponent', () => {
   it('should display temperature with snow emoji when temperature is less than or equal to 10', () => {
     fixture.componentRef.setInput('city', 'Sao Paulo');
     fixture.componentRef.setInput('temperature', 10);
+    fixture.componentRef.setInput('showType', 'grid');
     fixture.detectChanges();
 
     const temperature = fixture.nativeElement.querySelector('[data-testid="temperature"]');

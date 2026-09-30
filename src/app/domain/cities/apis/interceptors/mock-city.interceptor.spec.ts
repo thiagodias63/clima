@@ -52,7 +52,7 @@ describe('MockCityInterceptor', () => {
     httpTestingController.expectNone('/api/cities');
 
     expect(responseReceived).toBe(true);
-    expect(responseBody).toBeDefined();
+    expect(responseBody).not.toBeNull();
     expect(Array.isArray(responseBody)).toBe(true);
     expect((responseBody as any)?.length).toBe(5);
 

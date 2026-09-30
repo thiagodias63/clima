@@ -46,7 +46,7 @@ describe('CityAskLocationComponent', () => {
     detectLocationButtonEl.click();
     fixture.detectChanges();
     expect(detectLocationButtonEl.textContent).toContain('Detectando');
-    expect(detectLocationButtonEl.getAttribute('disabled')).toBeDefined();
+    expect(detectLocationButtonEl.getAttribute('disabled')).not.toBeNull();
   });
 
   describe('get location with error', () => {
@@ -155,7 +155,7 @@ describe('CityAskLocationComponent', () => {
       detectLocationButtonEl.click();
       fixture.detectChanges();
       localCitySelectorEl = fixture.nativeElement.querySelector(localCitySelector + ' city-card');
-      expect(localCitySelectorEl).toBeDefined();
+      expect(localCitySelectorEl).not.toBeNull();
       expect(component.localCity()!.city).toEqual('Sua localização');
       expect(component.localCity()!.temperature).toEqual(21);
       expect(component.localCity()!.latitude).toEqual(position.coords.latitude);

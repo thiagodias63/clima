@@ -66,9 +66,9 @@ describe('CitiesPage', () => {
       fixture.detectChanges();
       expect(fixture.nativeElement.querySelector('city-map')).not.toBeNull();
       component.cities()?.forEach(city => {
-        expect(city.index).toBeDefined();
-        expect(city.city).toBeDefined();
-        expect(city.temperature).toBeDefined();
+        expect(city.index).not.toBeNull();
+        expect(city.city).not.toBeNull();
+        expect(city.temperature).not.toBeNull();
         expect(city.latitude).not.toBeUndefined();
         expect(city.longitude).not.toBeUndefined();
       });
@@ -85,12 +85,48 @@ describe('CitiesPage', () => {
       fixture.detectChanges();
       expect(fixture.nativeElement.querySelector('city-map')).toBeNull();
       component.cities()?.forEach(city => {
-        expect(city.index).toBeDefined();
-        expect(city.city).toBeDefined();
-        expect(city.temperature).toBeDefined();
+        expect(city.index).not.toBeNull();
+        expect(city.city).not.toBeNull();
+        expect(city.temperature).not.toBeNull();
         expect(city.latitude).toBeUndefined();
         expect(city.longitude).toBeUndefined();
       });
+    });
+  });
+
+  describe('toggle show type', () => {
+    let toggleShowTypeButton: HTMLButtonElement;
+    beforeEach(() => {
+      toggleShowTypeButton = fixture.nativeElement.querySelector(
+        '[data-testid="show-as-list-grid-button"]',
+      );
+    });
+
+    it('should show maps when click on "toggle map" once', () => {
+      expect(
+        fixture.nativeElement.querySelector('[data-testid="cities-list"]').classList,
+      ).toContain('grid-cols-5');
+      toggleShowTypeButton.click();
+      fixture.detectChanges();
+      expect(
+        fixture.nativeElement.querySelector('[data-testid="cities-list"]').classList,
+      ).toContain('grid-cols-1');
+    });
+
+    it('should hide maps when click on "toggle map" twice', () => {
+      expect(
+        fixture.nativeElement.querySelector('[data-testid="cities-list"]').classList,
+      ).toContain('grid-cols-5');
+      toggleShowTypeButton.click();
+      fixture.detectChanges();
+      expect(
+        fixture.nativeElement.querySelector('[data-testid="cities-list"]').classList,
+      ).toContain('grid-cols-1');
+      toggleShowTypeButton.click();
+      fixture.detectChanges();
+      expect(
+        fixture.nativeElement.querySelector('[data-testid="cities-list"]').classList,
+      ).toContain('grid-cols-5');
     });
   });
 
