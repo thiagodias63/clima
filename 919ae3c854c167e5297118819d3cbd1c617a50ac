@@ -1,0 +1,25 @@
+package.json
+  s_ee6cdacd1d41c1::t_dfa35c716e64b5 48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "base_commit_sha": "e2712996f0f07c5e06d3f3e9ad77e7986377afcc",
+  "prompts": {},
+  "sessions": {
+    "s_ee6cdacd1d41c1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f77a-32af-77b2-b7e9-68e68d8e5839",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "thiago.diasbittencourt-ext@ab-inbev.com",
+      "custom_attributes": {
+        "input_tokens": "3217268",
+        "output_tokens": "16082",
+        "cache_read_input_tokens": "3057152",
+        "operation_input_tokens": "3217268",
+        "operation_output_tokens": "16082"
+      }
+    }
+  }
+}
