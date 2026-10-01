@@ -32,7 +32,7 @@ describe('CityMapComponent', () => {
 		fixture.componentRef.setInput('showRealMap', true);
 		fixture.detectChanges();
 
-		const map = fixture.nativeElement.querySelector('[data-testid="city-map"]');
+		const map = fixture.nativeElement.querySelector('[data-testid="city-real-map"]');
 
 		expect(map).toBeTruthy();
 	});
@@ -47,7 +47,7 @@ describe('CityMapComponent', () => {
 		fixture.detectChanges();
 		const bbox = '1.96,0.96,2.04,1.04';
 		const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${latitude},${longitude}&zoom=12`;
-		const map: HTMLIFrameElement = fixture.nativeElement.querySelector('[data-testid="city-map"]');
+		const map: HTMLIFrameElement = fixture.nativeElement.querySelector('[data-testid="city-real-map"]');
 		expect(map.getAttribute('src')).toEqual(mapUrl);
 	});
 });
