@@ -37,6 +37,10 @@
 			nbCluster
 			gap="md">
 			<city-card
+				[showingMap]="true"
+				[isList]="false"
+				[isGrid]="true"
+				[showRealMap]="true"
 				[city]="localCity()!.city"
 				[temperature]="localCity()!.temperature"
 				[latitude]="localCity()!.latitude"

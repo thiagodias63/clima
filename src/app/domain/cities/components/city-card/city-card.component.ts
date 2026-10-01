@@ -11,10 +11,14 @@ import { CommonModule } from '@angular/common';
 export class CityCardComponent {
 	city = input.required<string>();
 	temperature = input.required<number>();
+	showingMap = input.required<boolean>();
+	isList = input.required<boolean>();
+	isGrid = input.required<boolean>();
+	showRealMap = input.required<boolean>();
 	latitude = input<number>();
 	longitude = input<number>();
-	loading = input<boolean>(false);
-	showType = input.required<'list' | 'grid'>();
+	loading = input(false);
+	text = input('');
 
 	temperatureWithEmoji = computed(() => {
 		const temperature = this.temperature();

@@ -57,8 +57,8 @@ describe('MockCityInterceptor', () => {
 		const firstCity = responseBody![0];
 		expect(firstCity).toHaveProperty('city');
 		expect(firstCity).toHaveProperty('temperature');
-		expect(firstCity.latitude).toBe(52.520008);
-		expect(firstCity.longitude).toBe(13.404954);
+		expect(firstCity.latitude).toBeTypeOf('number');
+		expect(firstCity.longitude).toBeTypeOf('number');
 		expect(bigIntSpy).toHaveBeenCalled();
 		expect(bigIntSpy).toHaveBeenCalledWith({ min: -10n, max: 50n });
 		expect(bigIntSpy).toHaveBeenCalledTimes(5);

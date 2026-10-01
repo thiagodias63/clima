@@ -1,5 +1,6 @@
-import { Component, computed, inject, input } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, computed, effect, inject, input, OnInit, signal, untracked } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { CityMapGenerator } from '../../services/city-map-generator/city-map-generator.service';
 
 @Component({
 	selector: 'city-map',
@@ -9,10 +10,39 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class CityMapComponent {
 	private sanitizer = inject(DomSanitizer);
 
+	city = input.required<string>();
 	latitude = input.required<number>();
 	longitude = input.required<number>();
+	showRealMap = input.required<boolean>();
 
-	mapUrl = computed(() => {
+	htmlReady = signal(false);
+
+	constructor() {
+		effect(() => {
+			this.longitude();
+			this.latitude();
+			if (this.htmlReady()) {
+				untracked(() => {
+					console.log(this.showRealMap());
+					if (!this.showRealMap()) {
+						this.generateMap();
+					}
+				});
+			}
+		});
+	}
+
+	ngAfterViewInit(): void {
+		this.htmlReady.set(true);
+	}
+
+	private generateMap(): void {
+		const latitude = this.latitude();
+		const longitude = this.longitude();
+		return CityMapGenerator.generate(this.city(), latitude, longitude);
+	}
+
+	mapIframeUrl = computed(() => {
 		const latitude = this.latitude();
 		const longitude = this.longitude();
 		const delta = 0.04;

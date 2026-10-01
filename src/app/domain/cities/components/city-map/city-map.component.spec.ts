@@ -18,6 +18,8 @@ describe('CityMapComponent', () => {
 	it('should create', () => {
 		fixture.componentRef.setInput('latitude', -23.55);
 		fixture.componentRef.setInput('longitude', -46.63);
+		fixture.componentRef.setInput('city', 'city');
+		fixture.componentRef.setInput('showRealMap', true);
 		fixture.detectChanges();
 
 		expect(component).toBeTruthy();
@@ -26,6 +28,8 @@ describe('CityMapComponent', () => {
 	it('should display map', () => {
 		fixture.componentRef.setInput('latitude', -23.55);
 		fixture.componentRef.setInput('longitude', -46.63);
+		fixture.componentRef.setInput('city', 'city');
+		fixture.componentRef.setInput('showRealMap', true);
 		fixture.detectChanges();
 
 		const map = fixture.nativeElement.querySelector('[data-testid="city-map"]');
@@ -38,6 +42,8 @@ describe('CityMapComponent', () => {
 		const longitude = 2;
 		fixture.componentRef.setInput('latitude', latitude);
 		fixture.componentRef.setInput('longitude', longitude);
+		fixture.componentRef.setInput('city', 'city');
+		fixture.componentRef.setInput('showRealMap', true);
 		fixture.detectChanges();
 		const bbox = '1.96,0.96,2.04,1.04';
 		const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${latitude},${longitude}&zoom=12`;

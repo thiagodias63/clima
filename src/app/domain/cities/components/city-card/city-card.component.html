@@ -9,35 +9,54 @@
 		{{ city() }}
 	</h4>
 </ng-template>
+<ng-template #cityTemperature>
+	<h2
+		nbTitle
+		class="font-mono text-4xl font-black leading-tight uppercase"
+		data-testid="temperature"
+		[ngClass]="{
+			'bg-gray-300 rounded w-3/4 animate-pulse text-transparent': loading(),
+		}">
+		{{ temperatureWithEmoji() }}
+	</h2>
+</ng-template>
 <nb-card>
-	@if (showType() === 'grid') {
+	@if (isGrid()) {
 		<nb-card-header>
-			@if (latitude() && longitude()) {
+			@if (showingMap()) {
 				<city-map
+					[city]="city()"
 					[latitude]="latitude()!"
-					[longitude]="longitude()!" />
+					[longitude]="longitude()!"
+					[showRealMap]="showRealMap()" />
 			}
 			<nb-card-title>
-				<ng-container *ngTemplateOutlet="cityName"></ng-container>
+				<ng-container *ngTemplateOutlet="cityName" />
 			</nb-card-title>
 		</nb-card-header>
 	}
 
 	<nb-card-content
 		[ngClass]="{
-			'flex items-center gap-3': showType() === 'list',
+			'grid grid-cols-[auto_1fr] items-center gap-3': isList(),
 		}">
-		@if (showType() === 'list') {
-			<ng-container *ngTemplateOutlet="cityName"></ng-container>
+		@if (isList()) {
+			@if (showingMap()) {
+				<city-map
+					class="-mb-6"
+					[city]="city()"
+					[latitude]="latitude()!"
+					[longitude]="longitude()!"
+					[showRealMap]="showRealMap()" />
+			}
+
+			<div class="ml-3 flex flex-col gap-2">
+				<ng-container *ngTemplateOutlet="cityTemperature" />
+				<ng-container *ngTemplateOutlet="cityName" />
+				<p>{{ text() }}</p>
+			</div>
+		} @else {
+			<ng-container *ngTemplateOutlet="cityTemperature" />
 		}
-		<h2
-			nbTitle
-			class="font-mono text-4xl font-black leading-tight uppercase"
-			data-testid="temperature"
-			[ngClass]="{
-				'bg-gray-300 rounded w-3/4 animate-pulse text-transparent': loading(),
-			}">
-			{{ temperatureWithEmoji() }}
-		</h2>
 	</nb-card-content>
 </nb-card>

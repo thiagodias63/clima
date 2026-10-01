@@ -3,4 +3,5 @@ export interface City {
 	temperature: number;
 	latitude?: number;
 	longitude?: number;
+	text?: string;
 }

@@ -9,5 +9,13 @@
 	"arrowParens": "always",
 	"printWidth": 140,
 	"htmlWhitespaceSensitivity": "ignore",
-	"singleAttributePerLine": true
+	"singleAttributePerLine": true,
+	"overrides": [
+		{
+			"files": "*.html",
+			"options": {
+				"parser": "angular"
+			}
+		}
+	]
 }
