@@ -6,10 +6,11 @@
 			loading="lazy"
 			referrerpolicy="no-referrer-when-downgrade"
 			[src]="mapIframeUrl()"
-			data-testid="city-map"></iframe>
+			data-testid="city-real-map"></iframe>
 	} @else {
 		<canvas
 			[id]="city()"
-			class="h-48 w-full"></canvas>
+			class="h-48 w-full"
+			data-testid="city-generated-map"></canvas>
 	}
 </div>
